@@ -87,25 +87,23 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+        "icon-pop": {
+          "0%": { opacity: "0", transform: "translate(-50%,-50%) scale(0) rotate(0deg)" },
+          "30%": { opacity: "1", transform: "translate(-50%,-50%) scale(1.2) rotate(15deg)" },
+          "100%": { opacity: "0", transform: "translate(-50%,-80%) scale(0.6) rotate(-10deg)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "icon-pop": "icon-pop 0.8s ease-out forwards",
       },
     },
   },
