@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SectionCard from "@/components/SectionCard";
+import InteractivePortrait from "@/components/InteractivePortrait";
 import { researchStatement } from "@/data/cv";
 
 const sections = [
