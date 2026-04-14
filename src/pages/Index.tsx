@@ -46,6 +46,7 @@ const Index = () => {
         {/* Hero Section */}
         <section className="px-5 md:px-20 pt-12 md:pt-20 pb-8 md:pb-12">
           <div className="max-w-4xl mx-auto text-center">
+            <InteractivePortrait />
             <h1 className="text-5xl md:text-[100px] font-extrabold uppercase text-center mb-8 leading-[0.8] tracking-[-2px] max-[700px]:tracking-[-1px]">
               R. GARG
             </h1>
