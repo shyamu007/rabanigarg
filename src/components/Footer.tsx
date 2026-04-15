@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="text-3xl md:text-4xl font-bold italic mb-3 font-sans">
               R. Garg
             </div>
-            <p className="text-sm font-serif text-foreground/80 leading-relaxed">
+            <p className="text-sm text-foreground/80 leading-relaxed font-sans">
               Education researcher studying youth cultures, new media technologies, and the role of technology in education.
             </p>
           </div>
@@ -22,7 +22,7 @@ const Footer = () => {
 
           <div>
             <h3 className="footer-header">AFFILIATIONS</h3>
-            <p className="text-sm font-serif text-foreground/80 leading-relaxed">
+            <p className="text-sm text-foreground/80 leading-relaxed font-sans">
               University of Pennsylvania<br />
               Graduate School of Education<br />
               Center for Experimental Ethnography

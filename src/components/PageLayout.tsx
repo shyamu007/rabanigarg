@@ -19,7 +19,7 @@ const PageLayout = ({ children, title, subtitle }: PageLayoutProps) => {
               {title}
             </h1>
             {subtitle && (
-              <p className="text-lg md:text-xl text-foreground/70 font-serif mb-8">
+              <p className="text-lg md:text-xl text-foreground/70 mb-8 font-sans font-semibold">
                 {subtitle}
               </p>
             )}
