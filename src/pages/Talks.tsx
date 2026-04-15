@@ -20,6 +20,7 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
   // Flat list of all cards with their year
   const allCards = years.flatMap((year) => grouped[year].map((talk) => ({ year, talk })));
   const [activeYear, setActiveYear] = useState(years[0]);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const scrollToYear = (year: string) => {
