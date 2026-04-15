@@ -16,7 +16,7 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
     (acc[talk.year] = acc[talk.year] || []).push(talk);
     return acc;
   }, {});
-
+  const years = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
   // Flat list of all cards with their year
   const allCards = years.flatMap((year) => grouped[year].map((talk) => ({ year, talk })));
   const [activeYear, setActiveYear] = useState(years[0]);
