@@ -55,7 +55,7 @@ const Portfolio = () => {
                         </a>
                       )}
                     </div>
-                    <p className="text-base leading-relaxed font-serif text-foreground/85">
+                    <p className="text-base leading-relaxed text-foreground/85 font-sans">
                       {project.description}
                     </p>
                     {project.password && (
