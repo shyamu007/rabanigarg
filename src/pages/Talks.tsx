@@ -17,7 +17,7 @@ const TalkList = ({ items }: { items: Talk[] }) => {
             <h3 className="text-sm font-bold font-sans uppercase tracking-wide text-foreground/50 mb-3">{year}</h3>
             <div className="space-y-3 pl-4 border-l-2 border-foreground/10">
               {talks.map((talk, i) => (
-                <p key={i} className="text-base leading-relaxed font-serif">{talk.citation}</p>
+                <p key={i} className="text-base leading-relaxed font-sans">{talk.citation}</p>
               ))}
             </div>
           </div>
