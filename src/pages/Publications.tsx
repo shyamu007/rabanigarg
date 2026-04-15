@@ -12,7 +12,7 @@ const PubSection = ({ title, items }: { title: string; items: Publication[] }) =
           {pub.year && (
             <span className="text-sm font-bold font-sans text-foreground/50 min-w-[50px] pt-1">{pub.year}</span>
           )}
-          <p className="text-base leading-relaxed font-serif flex-1">
+          <p className="text-base leading-relaxed flex-1 font-light font-sans">
             {pub.citation}
             {pub.link && (
               <>
