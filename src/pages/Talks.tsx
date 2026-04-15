@@ -68,31 +68,24 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
             }
           }}
         >
-          {years.map((year, yi) => (
-            <div
-              key={year}
-              className="snap-center shrink-0 w-[85vw] md:w-[600px] rounded-2xl p-6 md:p-8 shadow-lg transition-transform"
-              style={{
-                backgroundColor: cardColors[(yi + sectionIndex * 2) % cardColors.length],
-              }}
-            >
-              <h3 className="text-3xl md:text-4xl font-extrabold font-sans mb-5 text-foreground/90">
-                {year}
-              </h3>
-              <div className="space-y-4">
-                {grouped[year].map((talk, i) => (
-                  <div
-                    key={i}
-                    className="bg-background/40 backdrop-blur-sm rounded-xl p-4"
-                  >
-                    <p className="text-sm md:text-base leading-relaxed font-sans text-foreground/85">
-                      {talk.citation}
-                    </p>
-                  </div>
-                ))}
+          {years.map((year, yi) =>
+            grouped[year].map((talk, ti) => (
+              <div
+                key={`${year}-${ti}`}
+                className="snap-center shrink-0 w-[85vw] md:w-[400px] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col justify-between min-h-[220px]"
+                style={{
+                  backgroundColor: cardColors[(yi + sectionIndex * 2 + ti) % cardColors.length],
+                }}
+              >
+                <p className="text-sm md:text-base leading-relaxed font-sans text-foreground/85 flex-1">
+                  {talk.citation}
+                </p>
+                <span className="mt-4 text-xs font-bold font-sans uppercase tracking-widest text-foreground/40">
+                  {year}
+                </span>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* Navigation arrows */}
