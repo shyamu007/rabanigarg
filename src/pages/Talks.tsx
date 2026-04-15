@@ -69,7 +69,6 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
             if (allCards[clamped]?.year !== activeYear) {
               setActiveYear(allCards[clamped]?.year);
             }
-            }
           }}
         >
           {years.map((year, yi) =>
