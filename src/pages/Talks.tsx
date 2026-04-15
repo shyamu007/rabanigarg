@@ -94,18 +94,28 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
         </div>
 
         {/* Navigation arrows */}
-        {years.length > 1 && (
+        {allCards.length > 1 && (
           <>
             <button
-              onClick={() => scrollTo(activeIndex - 1)}
-              disabled={activeIndex === 0}
+              onClick={() => {
+                const prev = Math.max(0, activeCardIndex - 1);
+                setActiveCardIndex(prev);
+                const card = scrollRef.current?.children[prev] as HTMLElement;
+                card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+              }}
+              disabled={activeCardIndex === 0}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 md:-translate-x-5 bg-background/90 backdrop-blur border border-foreground/10 rounded-full p-2 shadow-md disabled:opacity-30 transition-opacity hover:bg-background"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => scrollTo(activeIndex + 1)}
-              disabled={activeIndex === years.length - 1}
+              onClick={() => {
+                const next = Math.min(allCards.length - 1, activeCardIndex + 1);
+                setActiveCardIndex(next);
+                const card = scrollRef.current?.children[next] as HTMLElement;
+                card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+              }}
+              disabled={activeCardIndex === allCards.length - 1}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 md:translate-x-5 bg-background/90 backdrop-blur border border-foreground/10 rounded-full p-2 shadow-md disabled:opacity-30 transition-opacity hover:bg-background"
             >
               <ChevronRight className="w-5 h-5" />
