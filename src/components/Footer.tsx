@@ -4,7 +4,7 @@ const Footer = () => {
       <div className="px-5 md:px-20 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
           <div>
-            <div className="font-serif text-3xl md:text-4xl font-bold italic mb-3">
+            <div className="text-3xl md:text-4xl font-bold italic mb-3 font-sans">
               R. Garg
             </div>
             <p className="text-sm font-serif text-foreground/80 leading-relaxed">
