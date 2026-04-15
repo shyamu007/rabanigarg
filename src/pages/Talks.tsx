@@ -17,17 +17,19 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
     return acc;
   }, {});
 
-  const years = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Flat list of all cards with their year
+  const allCards = years.flatMap((year) => grouped[year].map((talk) => ({ year, talk })));
+  const [activeYear, setActiveYear] = useState(years[0]);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scrollTo = (index: number) => {
-    const clamped = Math.max(0, Math.min(index, years.length - 1));
-    setActiveIndex(clamped);
+  const scrollToYear = (year: string) => {
+    const index = allCards.findIndex((c) => c.year === year);
+    if (index < 0) return;
+    setActiveYear(year);
     const container = scrollRef.current;
     if (container) {
-      const card = container.children[clamped] as HTMLElement;
-      card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      const card = container.children[index] as HTMLElement;
+      card?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
     }
   };
 
@@ -35,12 +37,12 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
     <div className="space-y-4">
       {/* Year pills */}
       <div className="flex gap-2 flex-wrap mb-2">
-        {years.map((year, i) => (
+        {years.map((year) => (
           <button
             key={year}
-            onClick={() => scrollTo(i)}
+            onClick={() => scrollToYear(year)}
             className={`px-4 py-1.5 rounded-full text-sm font-bold font-sans uppercase tracking-wide transition-all ${
-              i === activeIndex
+              year === activeYear
                 ? "bg-foreground text-background scale-105"
                 : "bg-foreground/10 text-foreground/60 hover:bg-foreground/20"
             }`}
@@ -63,8 +65,10 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
             const cardWidth = (container.children[0] as HTMLElement)?.offsetWidth || 300;
             const gap = 20;
             const newIndex = Math.round(scrollLeft / (cardWidth + gap));
-            if (newIndex !== activeIndex && newIndex >= 0 && newIndex < years.length) {
-              setActiveIndex(newIndex);
+            const clamped = Math.max(0, Math.min(newIndex, allCards.length - 1));
+            if (allCards[clamped]?.year !== activeYear) {
+              setActiveYear(allCards[clamped]?.year);
+            }
             }
           }}
         >
