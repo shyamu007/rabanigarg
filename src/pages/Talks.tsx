@@ -16,18 +16,21 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
     (acc[talk.year] = acc[talk.year] || []).push(talk);
     return acc;
   }, {});
-
   const years = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
-  const [activeIndex, setActiveIndex] = useState(0);
+  // Flat list of all cards with their year
+  const allCards = years.flatMap((year) => grouped[year].map((talk) => ({ year, talk })));
+  const [activeYear, setActiveYear] = useState(years[0]);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const scrollTo = (index: number) => {
-    const clamped = Math.max(0, Math.min(index, years.length - 1));
-    setActiveIndex(clamped);
+  const scrollToYear = (year: string) => {
+    const index = allCards.findIndex((c) => c.year === year);
+    if (index < 0) return;
+    setActiveYear(year);
     const container = scrollRef.current;
     if (container) {
-      const card = container.children[clamped] as HTMLElement;
-      card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      const card = container.children[index] as HTMLElement;
+      card?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
     }
   };
 
@@ -35,12 +38,12 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
     <div className="space-y-4">
       {/* Year pills */}
       <div className="flex gap-2 flex-wrap mb-2">
-        {years.map((year, i) => (
+        {years.map((year) => (
           <button
             key={year}
-            onClick={() => scrollTo(i)}
+            onClick={() => scrollToYear(year)}
             className={`px-4 py-1.5 rounded-full text-sm font-bold font-sans uppercase tracking-wide transition-all ${
-              i === activeIndex
+              year === activeYear
                 ? "bg-foreground text-background scale-105"
                 : "bg-foreground/10 text-foreground/60 hover:bg-foreground/20"
             }`}
@@ -63,51 +66,56 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
             const cardWidth = (container.children[0] as HTMLElement)?.offsetWidth || 300;
             const gap = 20;
             const newIndex = Math.round(scrollLeft / (cardWidth + gap));
-            if (newIndex !== activeIndex && newIndex >= 0 && newIndex < years.length) {
-              setActiveIndex(newIndex);
+            const clamped = Math.max(0, Math.min(newIndex, allCards.length - 1));
+            if (allCards[clamped]?.year !== activeYear) {
+              setActiveYear(allCards[clamped]?.year);
             }
+            setActiveCardIndex(clamped);
           }}
         >
-          {years.map((year, yi) => (
-            <div
-              key={year}
-              className="snap-center shrink-0 w-[85vw] md:w-[600px] rounded-2xl p-6 md:p-8 shadow-lg transition-transform"
-              style={{
-                backgroundColor: cardColors[(yi + sectionIndex * 2) % cardColors.length],
-              }}
-            >
-              <h3 className="text-3xl md:text-4xl font-extrabold font-sans mb-5 text-foreground/90">
-                {year}
-              </h3>
-              <div className="space-y-4">
-                {grouped[year].map((talk, i) => (
-                  <div
-                    key={i}
-                    className="bg-background/40 backdrop-blur-sm rounded-xl p-4"
-                  >
-                    <p className="text-sm md:text-base leading-relaxed font-sans text-foreground/85">
-                      {talk.citation}
-                    </p>
-                  </div>
-                ))}
+          {years.map((year, yi) =>
+            grouped[year].map((talk, ti) => (
+              <div
+                key={`${year}-${ti}`}
+                className="snap-center shrink-0 w-[85vw] md:w-[400px] rounded-2xl p-6 md:p-8 shadow-lg flex flex-col justify-between min-h-[220px]"
+                style={{
+                  backgroundColor: cardColors[(yi + sectionIndex * 2 + ti) % cardColors.length],
+                }}
+              >
+                <p className="text-sm md:text-base leading-relaxed font-sans text-foreground/85 flex-1">
+                  {talk.citation}
+                </p>
+                <span className="mt-4 text-xs font-bold font-sans uppercase tracking-widest text-foreground/40">
+                  {year}
+                </span>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* Navigation arrows */}
-        {years.length > 1 && (
+        {allCards.length > 1 && (
           <>
             <button
-              onClick={() => scrollTo(activeIndex - 1)}
-              disabled={activeIndex === 0}
+              onClick={() => {
+                const prev = Math.max(0, activeCardIndex - 1);
+                setActiveCardIndex(prev);
+                const card = scrollRef.current?.children[prev] as HTMLElement;
+                card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+              }}
+              disabled={activeCardIndex === 0}
               className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 md:-translate-x-5 bg-background/90 backdrop-blur border border-foreground/10 rounded-full p-2 shadow-md disabled:opacity-30 transition-opacity hover:bg-background"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
-              onClick={() => scrollTo(activeIndex + 1)}
-              disabled={activeIndex === years.length - 1}
+              onClick={() => {
+                const next = Math.min(allCards.length - 1, activeCardIndex + 1);
+                setActiveCardIndex(next);
+                const card = scrollRef.current?.children[next] as HTMLElement;
+                card?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+              }}
+              disabled={activeCardIndex === allCards.length - 1}
               className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 md:translate-x-5 bg-background/90 backdrop-blur border border-foreground/10 rounded-full p-2 shadow-md disabled:opacity-30 transition-opacity hover:bg-background"
             >
               <ChevronRight className="w-5 h-5" />
