@@ -47,25 +47,27 @@ const Index = () => {
       <main>
         {/* Hero Section */}
         <section className="px-5 md:px-20 pt-12 md:pt-20 pb-8 md:pb-12">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-5xl mx-auto text-center">
             <InteractivePortrait />
             <h1 className="text-5xl md:text-[100px] font-extrabold uppercase text-center mb-8 leading-[0.8] tracking-[-2px] max-[700px]:tracking-[-1px]">
               R. GARG
             </h1>
-            <p className="text-lg md:text-xl leading-relaxed text-foreground/80 max-w-3xl mx-auto mb-4 font-sans text-justify">
+            <p className="text-lg md:text-xl leading-relaxed text-foreground/80 max-w-3xl mx-auto mb-4 font-sans text-center">
               {researchStatement.description}
             </p>
-            <p className="text-base leading-relaxed text-foreground/60 max-w-3xl font-sans text-justify md:text-xl mx-0 my-0 px-0 py-0">
+            <p className="text-base md:text-lg leading-relaxed text-foreground/60 max-w-3xl mx-auto font-sans text-center">
               {researchStatement.extended}
             </p>
           </div>
         </section>
 
         {/* Section Cards Grid */}
-        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-5 gap-5 md:pt-8 md:px-20 md:pb-16 md:gap-8">
-          {sections.map((section) => (
-            <SectionCard key={section.to} {...section} />
-          ))}
+        <section className="px-5 md:px-20 pt-4 pb-16 md:pb-24">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+            {sections.map((section) => (
+              <SectionCard key={section.to} {...section} />
+            ))}
+          </div>
         </section>
       </main>
 
