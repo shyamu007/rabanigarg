@@ -52,10 +52,10 @@ const Index = () => {
             <h1 className="text-5xl md:text-[100px] font-extrabold uppercase text-center mb-8 leading-[0.8] tracking-[-2px] max-[700px]:tracking-[-1px]">
               R. GARG
             </h1>
-            <p className="text-lg md:text-xl leading-relaxed text-foreground/80 max-w-3xl mx-auto mb-4 font-sans text-center">
+            <p className="text-lg md:text-xl leading-relaxed text-foreground/80 max-w-3xl mx-auto mb-4 font-sans text-justify">
               {researchStatement.description}
             </p>
-            <p className="text-base md:text-lg leading-relaxed text-foreground/60 max-w-3xl mx-auto font-sans text-center">
+            <p className="text-base md:text-lg leading-relaxed text-foreground/60 max-w-3xl mx-auto font-sans text-justify">
               {researchStatement.extended}
             </p>
           </div>
