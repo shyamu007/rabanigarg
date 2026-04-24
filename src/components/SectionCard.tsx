@@ -14,7 +14,7 @@ const SectionCard = ({ title, description, to, colorClass }: SectionCardProps) =
     <Link to={to} className="block">
       <article
         className={cn(
-          "card-hover rounded-3xl overflow-hidden p-8 md:p-10 flex flex-col justify-between min-h-[260px]",
+          "card-hover rounded-3xl overflow-hidden p-8 md:p-10 flex flex-col justify-between h-[260px]",
           colorClass
         )}
       >
