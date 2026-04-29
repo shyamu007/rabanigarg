@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import SectionCard from "@/components/SectionCard";
 import InteractivePortrait from "@/components/InteractivePortrait";
 import FloatingIcons from "@/components/FloatingIcons";
+import ScrollCardStack from "@/components/ScrollCardStack";
 import { researchStatement } from "@/data/cv";
 
 const sections = [
