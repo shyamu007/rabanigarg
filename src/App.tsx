@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createBrowserRouter, ScrollRestoration, Outlet } from "react-router-dom";
 import Index from "./pages/Index";
+import Starfield from "./components/Starfield";
 import Research from "./pages/Research";
 import Publications from "./pages/Publications";
 import CV from "./pages/CV";
@@ -16,6 +17,7 @@ const queryClient = new QueryClient();
 const Layout = () => (
   <>
     <ScrollRestoration />
+    <Starfield />
     <Outlet />
   </>
 );
