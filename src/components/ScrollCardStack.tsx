@@ -80,7 +80,7 @@ const ScrollCardStack = () => {
         </div>
 
         <div className="relative w-[78vmin] h-[78vmin] max-w-[640px] max-h-[640px]">
-          {cards.map((card, i) => {
+          {[...cards].reverse().map((card, i) => {
             const start = i * segment;
             const end = start + segment * 1.6;
             const local = (progress - start) / (end - start);
