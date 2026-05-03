@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import SectionCard from "@/components/SectionCard";
 import InteractivePortrait from "@/components/InteractivePortrait";
 import FloatingIcons from "@/components/FloatingIcons";
-import ScrollCardStack from "@/components/ScrollCardStack";
 import { researchStatement } from "@/data/cv";
 
 const sections = [
@@ -41,34 +40,27 @@ const sections = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <FloatingIcons />
-      <div className="bg-background">
-        <Header />
+      <Header />
 
-        <main>
-          {/* Hero Section */}
-          <section className="px-5 md:px-20 pt-12 md:pt-20 pb-8 md:pb-12 bg-background">
-            <div className="max-w-5xl mx-auto text-center">
-              <InteractivePortrait />
-              <h1 className="text-5xl md:text-[100px] font-extrabold uppercase text-center mb-8 leading-[0.8] tracking-[-2px] max-[700px]:tracking-[-1px]">
-                R. GARG
-              </h1>
-              <p className="text-lg md:text-xl leading-relaxed text-foreground/80 max-w-3xl mx-auto mb-4 font-sans text-justify">
-                {researchStatement.description}
-              </p>
-              <p className="text-base md:text-lg leading-relaxed text-foreground/60 max-w-3xl mx-auto font-sans text-justify">
-                {researchStatement.extended}
-              </p>
-            </div>
-          </section>
-        </main>
-      </div>
+      <main>
+        {/* Hero Section */}
+        <section className="px-5 md:px-20 pt-12 md:pt-20 pb-8 md:pb-12">
+          <div className="max-w-5xl mx-auto text-center">
+            <InteractivePortrait />
+            <h1 className="text-5xl md:text-[100px] font-extrabold uppercase text-center mb-8 leading-[0.8] tracking-[-2px] max-[700px]:tracking-[-1px]">
+              R. GARG
+            </h1>
+            <p className="text-lg md:text-xl leading-relaxed text-foreground/80 max-w-3xl mx-auto mb-4 font-sans text-center">
+              {researchStatement.description}
+            </p>
+            <p className="text-base md:text-lg leading-relaxed text-foreground/60 max-w-3xl mx-auto font-sans text-center">
+              {researchStatement.extended}
+            </p>
+          </div>
+        </section>
 
-      {/* Scroll-driven card stack over starfield */}
-      <ScrollCardStack />
-
-      <div className="bg-background">
         {/* Section Cards Grid */}
         <section className="px-5 md:px-20 pt-16 md:pt-24 pb-16 md:pb-24">
           <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
@@ -77,9 +69,9 @@ const Index = () => {
             ))}
           </div>
         </section>
+      </main>
 
-        <Footer />
-      </div>
+      <Footer />
     </div>
   );
 };
