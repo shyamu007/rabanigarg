@@ -82,9 +82,14 @@ const YearCardDeck = ({ items, sectionIndex }: { items: Talk[]; sectionIndex: nu
                   backgroundColor: cardColors[(yi + sectionIndex * 2 + ti) % cardColors.length],
                 }}
               >
-                <p className="text-sm md:text-base leading-relaxed font-sans text-foreground/85 flex-1">
-                  {talk.citation}
-                </p>
+                <div className="flex-1">
+                  <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-tight font-sans mb-3 leading-tight">
+                    {talk.title}
+                  </h3>
+                  <p className="text-sm md:text-base leading-relaxed font-sans text-foreground/85">
+                    {talk.citation}
+                  </p>
+                </div>
                 <span className="mt-4 text-xs font-bold font-sans uppercase tracking-widest text-foreground/40">
                   {year}
                 </span>
