@@ -97,11 +97,11 @@ const PubSection = ({
 
 const Publications = () => {
   const sections = [
-    { title: "Edited Volumes", items: publications.editedVolumes },
-    { title: "Peer-Reviewed Journal Articles", items: publications.peerReviewed },
-    { title: "Book Chapters", items: publications.bookChapters },
-    { title: "Conference Proceedings", items: publications.conferenceProceedings },
-    { title: "Manuscripts in Preparation", items: publications.manuscriptsInPrep },
+    { title: "Edited Volumes", subtitle: "Curated collections shaping the future of digital literacy and teacher education.", items: publications.editedVolumes },
+    { title: "Peer-Reviewed Journal Articles", subtitle: "Rigorous scholarship published in leading education and technology journals.", items: publications.peerReviewed },
+    { title: "Book Chapters", subtitle: "In-depth contributions to edited volumes on literacy, media, and learning.", items: publications.bookChapters },
+    { title: "Conference Proceedings", subtitle: "Peer-reviewed presentations at international learning sciences conferences.", items: publications.conferenceProceedings },
+    { title: "Manuscripts in Preparation", subtitle: "Ongoing research projects currently under review or in development.", items: publications.manuscriptsInPrep },
   ];
 
   return (
@@ -111,7 +111,7 @@ const Publications = () => {
     >
       <div className="space-y-6 md:space-y-8">
         {sections.map((s, i) => (
-          <PubSection key={s.title} title={s.title} items={s.items} index={i} />
+          <PubSection key={s.title} title={s.title} subtitle={s.subtitle} items={s.items} index={i} />
         ))}
       </div>
     </PageLayout>
