@@ -14,10 +14,12 @@ const sectionColors = [
 
 const PubSection = ({
   title,
+  subtitle,
   items,
   index,
 }: {
   title: string;
+  subtitle: string;
   items: Publication[];
   index: number;
 }) => {
