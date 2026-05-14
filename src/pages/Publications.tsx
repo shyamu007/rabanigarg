@@ -63,6 +63,9 @@ const PubSection = ({
       >
         <div className="overflow-hidden">
           <div className="px-6 md:px-8 pb-6 md:pb-8 pt-2 border-t-2 border-foreground/20">
+            <p className="text-sm md:text-base font-sans font-medium text-foreground/70 mt-4 mb-2">
+              {subtitle}
+            </p>
             <div className="space-y-4 mt-4">
               {items.map((pub, i) => (
                 <div key={i} className="flex gap-4">
